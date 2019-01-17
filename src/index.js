@@ -1,91 +1,9 @@
 const { GraphQLServer } = require('graphql-yoga')
-const { db } = require('../config.js')
+const { db, types } = require('../config.js')
 const knex = require('knex')(db)
 
 const typeDefs = `
-type Buzz {
-  id: Int
-  date: String
-  contact1: Int
-  contact2: Int
-  socialTip: String
-  generated: Int
-}
-type AuthItem {
-  name: String
-  type: Int
-  description: String
-  bizrule: String
-  data: String
-}
-type AuthItemChild {
-  parent: String
-  child: String
-}
-type AuthAssignment {
-  itemname: String
-  userid: Int 
-  bizrule: String
-  data: String
-}
-type AuthInfo {
-  auths: [AuthAssignment]
-  user: User
-}
-type User {
-  uid: Int
-  is3form: Int
-  isveritas: Int
-  privs: Int
-  active: Int
-  email: String
-  password: String
-  changePassword: Int
-  lastLogin: String
-  fname: String
-  lname: String
-  company: String
-  position: String
-  industry: String
-  phone: String
-  phone_ext: String
-  mobile: String
-  fax: String
-  tollfree: String
-  billaddr: String
-  shipaddr: String
-  fedexnum: String
-  upsnum: String
-  category: String
-  pricegrp: String
-  ctag: Int
-  repnote: String
-  info: Int
-  priority: Int
-  cust_id: String
-  contact_id: String
-  repid: String
-  srepid: String
-  alt_pm: Int
-  ice_privs: String
-  terms: String
-  cto_grp: String
-  cto_grp_sub: String
-  assoc: String
-  created: String
-  createby: Int
-  accepted_terms: String
-  reminder: Int
-  cookie_validation: String
-  bid: Int
-  googleAuth: String
-  lightartrepid: String
-  exteriorrepid: String
-  nationalrepid: String
-  exempt_reason: String
-  refresh_token: String
-  adv_notif: Int
-}
+${types}
 type Query {
   hello(name: String): String
   getBuzz: [Buzz]
