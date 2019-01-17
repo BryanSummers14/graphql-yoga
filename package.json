@@ -4,23 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
-    "start:pm2": "pm2 start dist/server.js -i max",
-    "down:pm2": "pm2 stop dist/server.js",
-    "build": "npm run build:gcc",
-    "build:gcc": "npx google-closure-compiler --js=./src/index.js --js_output_file=./dist/server.js"
+    "dev": "nodemon src/index.js",
+    "start": "pm2 start dist/index.js -i max",
+    "start:dev": "pm2 start src/index.js -i max",
+    "down": "pm2 stop dist/index.js",
+    "build": "npm run build:ncc && npm run build:clean",
+    "build:ncc": "npx ncc build src/index.js -o dist",
+    "build:gcc": "npx google-closure-compiler --js=./dist/index.js --js_output_file=./dist/server.js",
+    "build:clean": "rm -rf dist/migrate && rm -rf dist/seed"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "compression": "^1.7.3",
     "graphql-yoga": "^1.16.9",
     "knex": "^0.16.3",
     "mysql": "^2.16.0"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.8.1",
     "nodemon": "^1.18.9"
   }
 }

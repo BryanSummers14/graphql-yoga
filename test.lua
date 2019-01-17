@@ -1,3 +1,3 @@
 wrk.method = "POST"
-wrk.body   = '{"query": "query { getBuzz { id } }"}'
+wrk.body   = '{"query": "{ getAuth(id: 134595) { auths { itemname } user { fname lname } } }"}'
 wrk.headers["Content-Type"] = "application/json"
