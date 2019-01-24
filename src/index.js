@@ -35,7 +35,7 @@ const resolvers = {
 //   console.log(`4. logResult: ${result}`)
 //   return result
 // }
-
+const PORT = 4040;
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
@@ -44,4 +44,10 @@ const server = new GraphQLServer({
     test: 'Test context'
   }
 })
-server.start({ port: 4040, endpoint: '/graphql' }, () => console.log('Server is running on http://localhost:4040/graphql'))
+server.start(
+  {
+    port: PORT,
+    endpoint: '/graphql'
+  },
+  () => console.log(`Server is running on http://localhost:${PORT}/graphql`)
+)
